@@ -1,0 +1,9 @@
+Bundle-Name: LifeDev Tag Library
+Bundle-SymbolicName: com.lifedev.taglib
+Bundle-Version: 1.0.0
+Provide-Capability:\
+	osgi.extender;\
+		osgi.extender="jsp.taglib";\
+		uri="http://lifedev.com/tld/lifedev";\
+		version:Version="${Bundle-Version}"
+Web-ContextPath: /lifedev-taglib

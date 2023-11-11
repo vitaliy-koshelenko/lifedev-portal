@@ -1,0 +1,8 @@
+Bundle-Name: LifeDev Web
+Bundle-SymbolicName: com.lifedev.web
+Bundle-Version: 1.0.0
+Export-Package: com.lifedev.web.constants
+Provide-Capability:\
+   liferay.language.resources;\
+      resource.bundle.base.name="content.Language";\
+      service.ranking:Long="1"
