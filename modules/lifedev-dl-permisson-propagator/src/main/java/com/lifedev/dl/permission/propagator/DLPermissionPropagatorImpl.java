@@ -1,7 +1,9 @@
 package com.lifedev.dl.permission.propagator;
 
 import com.liferay.document.library.constants.DLPortletKeys;
+import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolder;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.document.library.kernel.service.DLFolderLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -48,6 +50,7 @@ public class DLPermissionPropagatorImpl extends BasePermissionPropagator {
             return;
         }
 
+        // Propagate DLFolder Permissions
         List<DLFolder> childFolders = getChildFolders(dlFolder);
         for (DLFolder childFolder: childFolders) {
             for (long roleId : roleIds) {
@@ -59,6 +62,28 @@ public class DLPermissionPropagatorImpl extends BasePermissionPropagator {
                     dlFolderId, dlFolderName, childFolder.getFolderId(), childFolder.getName()));
         }
 
+        // Propagate DLFile Permissions
+        List<DLFileEntry> childFiles = getChildFiles(dlFolder);
+        for (DLFileEntry fileEntry: childFiles) {
+            for (long roleId : roleIds) {
+                propagateRolePermissions(
+                        actionRequest, roleId, DLFolder.class.getName(), dlFolderId,
+                        DLFileEntry.class.getName(), fileEntry.getFileEntryId());
+            }
+            _log.info(String.format("Propagated permissions from DLFolder #%d '%s' to DLFileEntry #%d '%s'.",
+                    dlFolderId, dlFolderName, fileEntry.getFileEntryId(), fileEntry.getFileName()));
+        }
+
+    }
+
+    private List<DLFileEntry> getChildFiles(DLFolder parentFolder) {
+        List<DLFolder> childFolders = dlFolderLocalService.getFolders(parentFolder.getGroupId(), parentFolder.getFolderId());
+        List<DLFileEntry> childFiles = dlFileEntryLocalService.getFileEntries(parentFolder.getGroupId(), parentFolder.getFolderId());
+        List<DLFileEntry> allFiles = new ArrayList<>(childFiles);
+        for (DLFolder childFolder: childFolders) {
+            allFiles.addAll(getChildFiles(childFolder));
+        }
+        return allFiles;
     }
 
     private List<DLFolder> getChildFolders(DLFolder parentFolder) {
@@ -86,6 +111,8 @@ public class DLPermissionPropagatorImpl extends BasePermissionPropagator {
 
     @Reference
     private DLFolderLocalService dlFolderLocalService;
+    @Reference
+    private DLFileEntryLocalService dlFileEntryLocalService;
 
     private static final Log _log = LogFactoryUtil.getLog(DLPermissionPropagatorImpl.class);
 }
