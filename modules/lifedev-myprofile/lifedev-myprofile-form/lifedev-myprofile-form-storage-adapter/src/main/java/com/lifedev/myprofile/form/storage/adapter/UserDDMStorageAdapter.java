@@ -2,8 +2,6 @@ package com.lifedev.myprofile.form.storage.adapter;
 
 import com.liferay.dynamic.data.mapping.exception.StorageException;
 import com.liferay.dynamic.data.mapping.storage.*;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -12,43 +10,31 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.List;
 import java.util.Locale;
 
 @Component(
-        property = "ddm.storage.adapter.type=user",
+        property = "ddm.storage.adapter.type=user-storage-adapter",
         service = DDMStorageAdapter.class
 )
 public class UserDDMStorageAdapter implements DDMStorageAdapter {
 
-    String FIRST_NAME = "FirstName";
-    String LAST_NAME = "LastName";
-    String EMAIL = "Email";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastName";
+    private static final String EMAIL = "email";
 
     @Override
-    public DDMStorageAdapterDeleteResponse delete(
-            DDMStorageAdapterDeleteRequest ddmStorageAdapterDeleteRequest)
-            throws StorageException {
-
+    public DDMStorageAdapterDeleteResponse delete(DDMStorageAdapterDeleteRequest ddmStorageAdapterDeleteRequest) throws StorageException {
         try {
-            if (_log.isInfoEnabled()) {
-                _log.info("User storage adapter's delete method was invoked");
-            }
-
-            return defaultStorageAdapter.delete(
-                    ddmStorageAdapterDeleteRequest);
+            return defaultStorageAdapter.delete(ddmStorageAdapterDeleteRequest);
         } catch (Exception exception) {
             throw new StorageException(exception);
         }
     }
 
     @Override
-    public DDMStorageAdapterGetResponse get(DDMStorageAdapterGetRequest ddmStorageAdapterGetRequest)
-            throws StorageException {
-
+    public DDMStorageAdapterGetResponse get(DDMStorageAdapterGetRequest ddmStorageAdapterGetRequest) throws StorageException {
         try {
-            if (_log.isInfoEnabled()) {
-                _log.info("User storage adapter's get method was invoked");
-            }
             return defaultStorageAdapter.get(ddmStorageAdapterGetRequest);
         } catch (Exception exception) {
             throw new StorageException(exception);
@@ -56,20 +42,16 @@ public class UserDDMStorageAdapter implements DDMStorageAdapter {
     }
 
     @Override
-    public DDMStorageAdapterSaveResponse save(
-            DDMStorageAdapterSaveRequest ddmStorageAdapterSaveRequest)
-            throws StorageException {
+    public DDMStorageAdapterSaveResponse save(DDMStorageAdapterSaveRequest ddmStorageAdapterSaveRequest) throws StorageException {
 
         try {
-            if (_log.isInfoEnabled()) {
-                _log.info("User storage adapter's save method was invoked");
-            }
-            DDMStorageAdapterSaveResponse defaultStorageAdapterSaveResponse =
-                    defaultStorageAdapter.save(ddmStorageAdapterSaveRequest);
-            PermissionChecker permissionChecker = PermissionThreadLocal.getPermissionChecker();
+            DDMStorageAdapterSaveResponse defaultStorageAdapterSaveResponse = defaultStorageAdapter.save(ddmStorageAdapterSaveRequest);
 
+            PermissionChecker permissionChecker = PermissionThreadLocal.getPermissionChecker();
             User currentUser = permissionChecker.getUser();
-            for (DDMFormFieldValue ddmFormFieldValue : ddmStorageAdapterSaveRequest.getDDMFormValues().getDDMFormFieldValues()) {
+
+            List<DDMFormFieldValue> ddmFormFieldValues = ddmStorageAdapterSaveRequest.getDDMFormValues().getDDMFormFieldValues();
+            for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
                 Locale locale = LocaleUtil.getDefault();
                 String fieldName = ddmFormFieldValue.getFieldReference();
                 String fieldValue = ddmFormFieldValue.getValue().getString(locale);
@@ -92,5 +74,5 @@ public class UserDDMStorageAdapter implements DDMStorageAdapter {
     private UserLocalService userLocalService;
     @Reference(target = "(ddm.storage.adapter.type=default)")
     private DDMStorageAdapter defaultStorageAdapter;
-    private static final Log _log = LogFactoryUtil.getLog(UserDDMStorageAdapter.class);
+
 }

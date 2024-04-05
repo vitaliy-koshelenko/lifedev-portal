@@ -1,5 +1,6 @@
 package com.lifedev.myprofile.form.data.provider.settings;
 
+import com.lifedev.myprofile.form.data.provider.DDMCurrentUserDataProviderSettings;
 import com.liferay.dynamic.data.mapping.data.provider.settings.DDMDataProviderSettingsProvider;
 import org.osgi.service.component.annotations.Component;
 
@@ -11,7 +12,7 @@ public class DDMCurrentUserDataProviderSettingsProvider implements DDMDataProvid
 
 	@Override
 	public Class<?> getSettings() {
-		return DDMDataProviderSettingsProvider.class;
+		return DDMCurrentUserDataProviderSettings.class;
 	}
 
 }

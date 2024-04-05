@@ -13,26 +13,19 @@ import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Optional;
 
 @Component(
-	immediate = true, property = "ddm.data.provider.type=user",
+	immediate = true,
+	property = "ddm.data.provider.type=user",
 	service = DDMDataProvider.class
 )
 public class DDMCurrentUserDataProvider implements DDMDataProvider {
 
-	private static final String DATE_FORMAT = "yyyy-MM-dd";
 	private static final String TYPE_TEXT = "text";
-	private static final String TYPE_NUMBER = "number";
 
 	@Override
-	public DDMDataProviderResponse getData(
-			DDMDataProviderRequest ddmDataProviderRequest)
-		throws DDMDataProviderException {
-
+	public DDMDataProviderResponse getData(DDMDataProviderRequest ddmDataProviderRequest) throws DDMDataProviderException {
 		try {
 			return doGetData(ddmDataProviderRequest);
 		}
@@ -46,79 +39,46 @@ public class DDMCurrentUserDataProvider implements DDMDataProvider {
 		return ddmDataProviderSettingsProvider.getSettings();
 	}
 
-	protected DDMDataProviderResponse createDDMDataProviderResponse(
-			DDMCurrentUserDataProviderSettings ddmCurrentUserDataProviderSettings, JSONObject userInfo) throws Exception {
+	protected DDMDataProviderResponse createDDMDataProviderResponse
+			(DDMCurrentUserDataProviderSettings ddmCurrentUserDataProviderSettings, JSONObject userInfo) {
 
-		DDMDataProviderResponse.Builder builder =
-			DDMDataProviderResponse.Builder.newBuilder();
+		DDMDataProviderResponse.Builder builder = DDMDataProviderResponse.Builder.newBuilder();
 
-		for (DDMDataProviderOutputParametersSettings outputParameterSettings :
-				ddmCurrentUserDataProviderSettings.outputParameters()) {
+		for (DDMDataProviderOutputParametersSettings outputParameterSettings : ddmCurrentUserDataProviderSettings.outputParameters()) {
 
 			String outputParameterId = outputParameterSettings.outputParameterId();
 			String outputParameterPath = outputParameterSettings.outputParameterPath();
 			String outputParameterType = outputParameterSettings.outputParameterType();
 
 			if (TYPE_TEXT.equals(outputParameterType)) {
-
 				String paramValue = userInfo.getString(outputParameterPath);
-				Object param = userInfo.get(outputParameterPath);
-				if (param instanceof Date) {
-					DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-					paramValue = df.format((Date)param);
-				}
 				builder = builder.withOutput(outputParameterId, paramValue);
-
-			} else if (TYPE_NUMBER.equals(outputParameterType)) {
-
-				Long number = userInfo.getLong(outputParameterPath);
-				builder = builder.withOutput(outputParameterId, number);
 			}
 		}
 
 		return builder.build();
 	}
 
-	protected DDMDataProviderResponse doGetData(
-			DDMDataProviderRequest ddmDataProviderRequest)
-		throws Exception {
+	protected DDMDataProviderResponse doGetData(DDMDataProviderRequest ddmDataProviderRequest) throws Exception {
 
-		Optional<DDMDataProviderInstance> ddmDataProviderInstance =
-			fetchDDMDataProviderInstance(
-				ddmDataProviderRequest.getDDMDataProviderId());
+		Optional<DDMDataProviderInstance> ddmDataProviderInstance = fetchDDMDataProviderInstance(ddmDataProviderRequest.getDDMDataProviderId());
 
 		DDMCurrentUserDataProviderSettings ddmCurrentUserDataProviderSettings =
-			ddmDataProviderInstanceSettings.getSettings(
-				ddmDataProviderInstance.get(),
-				DDMCurrentUserDataProviderSettings.class);
+			ddmDataProviderInstanceSettings.getSettings(ddmDataProviderInstance.get(), DDMCurrentUserDataProviderSettings.class);
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
+		PermissionChecker permissionChecker = PermissionThreadLocal.getPermissionChecker();
 		User currentUser = permissionChecker.getUser();
 
 		JSONObject currentUserJSONObject = userInfoBuilder.buildUserInfo(currentUser);
 
-		return createDDMDataProviderResponse(
-			ddmCurrentUserDataProviderSettings, currentUserJSONObject);
+		return createDDMDataProviderResponse(ddmCurrentUserDataProviderSettings, currentUserJSONObject);
 	}
 
-	protected Optional<DDMDataProviderInstance> fetchDDMDataProviderInstance(
-			String ddmDataProviderInstanceId)
-		throws Exception {
-
-		DDMDataProviderInstance ddmDataProviderInstance =
-			ddmDataProviderInstanceService.fetchDataProviderInstanceByUuid(
-				ddmDataProviderInstanceId);
-
-		if ((ddmDataProviderInstance == null) &&
-			Validator.isNumber(ddmDataProviderInstanceId)) {
-
-			ddmDataProviderInstance =
-				ddmDataProviderInstanceService.fetchDataProviderInstance(
-					Long.parseLong(ddmDataProviderInstanceId));
+	protected Optional<DDMDataProviderInstance> fetchDDMDataProviderInstance(String ddmDataProviderInstanceId) throws Exception {
+		DDMDataProviderInstance ddmDataProviderInstance = ddmDataProviderInstanceService.fetchDataProviderInstanceByUuid(ddmDataProviderInstanceId);
+		if ((ddmDataProviderInstance == null) && Validator.isNumber(ddmDataProviderInstanceId)) {
+			ddmDataProviderInstance = ddmDataProviderInstanceService.fetchDataProviderInstance(Long.parseLong(ddmDataProviderInstanceId));
 		}
-
 		return Optional.ofNullable(ddmDataProviderInstance);
 	}
 

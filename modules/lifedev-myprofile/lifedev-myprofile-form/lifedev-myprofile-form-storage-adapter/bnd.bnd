@@ -1,3 +1,12 @@
 Bundle-Name: LifeDev MyProfile Form Storage Adapter
 Bundle-SymbolicName: com.lifedev.myprofile.form.storage.adapter
 Bundle-Version: 1.0.0
+Provide-Capability:\
+	liferay.resource.bundle;\
+		resource.bundle.base.name="content.Language",\
+	liferay.resource.bundle;\
+		bundle.symbolic.name=com.liferay.dynamic.data.mapping.lang;\
+		resource.bundle.aggregate:String="(bundle.symbolic.name=com.lifedev.myprofile.form.storage.adapter),(bundle.symbolic.name=com.liferay.dynamic.data.mapping.lang)";\
+		resource.bundle.base.name="content.Language";\
+		service.ranking:Long="2";\
+		servlet.context.name=dynamic-data-mapping-form-web
