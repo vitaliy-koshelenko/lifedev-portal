@@ -2,6 +2,8 @@ package com.lifedev.myprofile.form.storage.adapter;
 
 import com.liferay.dynamic.data.mapping.exception.StorageException;
 import com.liferay.dynamic.data.mapping.storage.*;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -21,7 +23,6 @@ public class UserDDMStorageAdapter implements DDMStorageAdapter {
 
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
-    private static final String EMAIL = "email";
 
     @Override
     public DDMStorageAdapterDeleteResponse delete(DDMStorageAdapterDeleteRequest ddmStorageAdapterDeleteRequest) throws StorageException {
@@ -55,12 +56,13 @@ public class UserDDMStorageAdapter implements DDMStorageAdapter {
                 Locale locale = LocaleUtil.getDefault();
                 String fieldName = ddmFormFieldValue.getFieldReference();
                 String fieldValue = ddmFormFieldValue.getValue().getString(locale);
+
+                _log.info("UserDDMStorageAdapter, field [" + fieldName + "]: " + fieldValue);
+
                 if (FIRST_NAME.equals(fieldName)){
                     currentUser.setFirstName(fieldValue);
                 } else if (LAST_NAME.equals(fieldName)) {
                     currentUser.setLastName(fieldValue);
-                } else if (EMAIL.equals(fieldName)) {
-                    currentUser.setEmailAddress(fieldValue);
                 }
             }
             userLocalService.updateUser(currentUser);
@@ -75,4 +77,5 @@ public class UserDDMStorageAdapter implements DDMStorageAdapter {
     @Reference(target = "(ddm.storage.adapter.type=default)")
     private DDMStorageAdapter defaultStorageAdapter;
 
+    private static final Log _log = LogFactoryUtil.getLog(UserDDMStorageAdapter.class);
 }
