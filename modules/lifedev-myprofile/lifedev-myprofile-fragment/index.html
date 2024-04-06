@@ -1,0 +1,10 @@
+<div class="profile-form">
+    <h2>My Profile</h2>
+    <form id="profileForm" action="/submit-profile" method="post">
+        <input type="hidden" id="userIdInput" name="userId" value="${user.getUserId()}">
+        <input type="text" name="firstName" placeholder="${user.getFirstName()}"><br>
+        <input type="text" name="lastName" placeholder="${user.getLastName()}"><br>
+        <input type="text" name="email" placeholder="${user.getEmailAddress()}"><br>
+        <input type="submit" value="Update Profile" />
+    </form>
+</div>
