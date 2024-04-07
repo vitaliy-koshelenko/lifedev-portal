@@ -1,10 +1,34 @@
-<div class="profile-form">
-    <h2>My Profile</h2>
-    <form id="profileForm" action="/submit-profile" method="post">
-        <input type="hidden" id="userIdInput" name="userId" value="${user.getUserId()}">
-        <input type="text" name="firstName" placeholder="${user.getFirstName()}"><br>
-        <input type="text" name="lastName" placeholder="${user.getLastName()}"><br>
-        <input type="text" name="email" placeholder="${user.getEmailAddress()}"><br>
-        <input type="submit" value="Update Profile" />
+<div class="form-group container">
+    <h2>${languageUtil.get(locale, "my-profile")}</h2>
+    <form id="myProfileForm" method="post">
+				<label>
+					<span class="text-truncate-inline">
+						<span class="text-truncate">
+							${languageUtil.get(locale, "first-name")}
+						</span>
+					</span>
+				</label>
+				<input type="text" class="form-control" name="firstName" value="${user.getFirstName()}" required/>
+			<label>
+				<span class="text-truncate-inline">
+					<span class="text-truncate">
+						${languageUtil.get(locale, "last-name")}
+					</span>
+				</span>
+			</label>
+			<input type="text" class="form-control" name="lastName" value="${user.getLastName()}" required/>
+			<label>
+				<span class="text-truncate-inline">
+					<span class="text-truncate">
+						${languageUtil.get(locale, "email")}
+					</span>
+				</span>
+			</label>
+			<input type="text" class="form-control" name="email" value="${user.getEmailAddress()}" disabled/>
+			
+			<div class="btn-group d-flex justify-content-end">
+				<input id="cancel-button" class="btn-group-item btn btn-secondary" type="button" value="${languageUtil.get(locale, "cancel")}"/>
+				<input type="submit" class="btn-group-item btn btn-primary" value="${languageUtil.get(locale, "update-profile")}"/>
+			</div>
     </form>
 </div>
