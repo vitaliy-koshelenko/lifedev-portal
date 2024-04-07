@@ -1,13 +1,16 @@
-fragmentElement.querySelector("#myProfileForm").addEventListener("submit", function(event) {
+const form = fragmentElement.querySelector("form");
+
+form.addEventListener("submit", function(event) {
 	event.preventDefault();
 	let form = this;
 
+	let userId = Liferay.ThemeDisplay.getUserId();
 	let firstName = form.elements["firstName"].value;
 	let lastName = form.elements["lastName"].value;
 	let email = form.elements["email"].value;
-	let userId = Liferay.ThemeDisplay.getUserId();
 
-	let response = Liferay.Util.fetch(themeDisplay.getPortalURL() + "/o/headless-admin-user/v1.0/user-accounts/" + userId, {
+	const updateProfileURL = themeDisplay.getPortalURL() + "/o/headless-admin-user/v1.0/user-accounts/" + userId;
+	Liferay.Util.fetch(updateProfileURL, {
 		method: 'PATCH',
 		headers: {
 			"Content-Type": "application/json",
@@ -26,18 +29,14 @@ fragmentElement.querySelector("#myProfileForm").addEventListener("submit", funct
 	}).then(function(response) {
 		console.log(response);
 		Liferay.Util.openToast({
-			message: 'User has been updated.',
+			message: 'User has been updated successfully.',
 			type: 'success'
 		});
 	}).catch(function(error) {
 		console.error("Error:", error);
 		Liferay.Util.openToast({
-			message: 'Error occurred while updating user.',
+			message: 'Error occurred while updating user:' + error,
 			type: 'danger'
 		});
 	});
-});
-
-fragmentElement.querySelector("#cancel-button").addEventListener("click", function(event) {
-	window.location.reload();
 });
