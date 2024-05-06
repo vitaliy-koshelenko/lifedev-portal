@@ -2,7 +2,9 @@
 	"name": "lifedev-theme",
 	"version": "1.0.0",
 	"main": "package.json",
-	"keywords": ["liferay-theme"],
+	"keywords": [
+		"liferay-theme"
+	],
 	"liferayTheme": {
 		"baseTheme": "styled",
 		"fontAwesome": true,
@@ -12,11 +14,12 @@
 	"devDependencies": {
 		"compass-mixins": "0.12.10",
 		"gulp": "4.0.2",
+		"gulp-postcss": "^8.0.0",
+		"liferay-font-awesome": "3.5.2",
 		"liferay-frontend-css-common": "6.0.8",
 		"liferay-frontend-theme-styled": "6.0.54",
 		"liferay-frontend-theme-unstyled": "6.0.45",
-		"liferay-theme-tasks": "^11.5.3",
-		"liferay-font-awesome": "3.5.2"
+		"liferay-theme-tasks": "^11.5.3"
 	},
 	"scripts": {
 		"init": "gulp init",
@@ -27,5 +30,11 @@
 		"status": "gulp status",
 		"upgrade": "gulp upgrade",
 		"watch": "gulp watch"
+	},
+	"dependencies": {
+		"autoprefixer": "^9.8.8",
+		"flowbite": "^2.3.0",
+		"postcss": "^7.0.39",
+		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
 	}
 }
