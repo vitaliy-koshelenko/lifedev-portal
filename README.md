@@ -1,18 +1,18 @@
-# Tailwing and Flowbite in Liferay
+# Tailwind and Flowbite in Liferay
 
-**Incorporating Tailwing Design System and Flowbite Components to Liferay**
+**Incorporating Tailwind Design System and Flowbite Components to Liferay**
 
 ## Introduction 
 
-Liferay has it's own design system based on Lexicon Design and Clay Components.
-For regular use cases they can satisfy customer needs, and user interfaces can be built by using out-of-the-box components.
+Liferay has its own design system based on Lexicon Design and Clay Components.
+For regular use cases, they can satisfy customer needs, and user interfaces can be built by using out-of-the-box components.
 But for more sophisticated user interfaces an external design system might be needed.
-TailwindCSS is one of the most popular CSS frameworks currently, and Flowbite is a components library based on TailwindCSS.
+TailwindCSS is one of the most popular CSS frameworks, and Flowbite is a components library based on TailwindCSS.
 This articles shows how to incorporate TailwindCSS / Flowbite to Liferay 7.4.
 
 ## TailwindCSS & Flowbite Integration
 
-### Step1: Standalone Installation / Configuration
+### Step1: Standalone Configuration
 
 Before integrating to Liferay you can install & configure TailwindCSS and Flowbite separately.
 
@@ -91,7 +91,7 @@ Install `PostCSS CLI` to be able to run `PostCSS` from command line:
 
 Run build script: `npm run build:css`. As a result, output.css file should be created.
 
-Create a sample `index.html` file to test installation: [index.html](modules/lifedev-flowbite-loader/index.html)
+Create a sample `index.html` file to test installation: [index.html](modules/lifedev-tailwind-loader/index.html)
 
 Copy some examples from Flowbite site and check appearance and behavior, sample:
 
@@ -117,7 +117,7 @@ To proceed with gulp - install `gulp` dependency and related plugins, based on s
 - [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css) - plugin for CSS minification;
 - [gulp-rename](https://www.npmjs.com/package/gulp-rename) - plugin for renaming files.
 
-Here is an example of `gulpfile.js` that can be used for building JS/CSS files for Tailwind/Flowbite: [gulpfile.js](modules/lifedev-flowbite-loader/gulpfile.js)
+Here is an example of `gulpfile.js` that can be used for building JS/CSS files for Tailwind/Flowbite: [gulpfile.js](modules/lifedev-tailwind-loader/gulpfile.js)
 
 ```
 const gulp = require('gulp');
@@ -199,9 +199,37 @@ Run `gulp build` command. As a result - two build files should be created in the
 
 Finally, verify the build process - adjust links in `index.html` to generated build files, and make sure everything is working properly.
 
-### Step 3: Wrapping with Gradle / OSGi module
+### Step 3: Wrapping with Gradle as OSGi module
 
-### Leveraging as Client Extensions 
+After TailwindCSS and Flowbite installation/configuration and defining Gulp build scripts, you can also wrap the installation with Gradle script to make it deployable to Liferay as an OSGi module.
+
+Create the `build.gradle` file:
+
+```
+dependencies {
+    compileOnly group: "com.liferay.portal", name: "release.portal.api", version: "7.4.3.120-ga120"
+}
+```
+
+Also, create the bundle descriptor `bnd.bnd`, sample:
+
+```
+Bundle-Name: LifeDev Tailwind Loader
+Bundle-SymbolicName: com.lifedev.tailwind.loader
+Bundle-Version: 1.0.0
+Web-ContextPath: /lifedev-tailwind-loader
+```
+_Note: define Web-ContextPath property to be able to reference files withing the assembled JAR using the specified context path._ 
+
+After running `gulp build` to assemble the build files - run Gradle deploy task to deploy the OSGi module with the generated files.
+
+Make sure you can access the files withing the deployed module:
+- http://localhost:8080/o/lifedev-tailwind-loader/build.min.css
+- http://localhost:8080/o/lifedev-tailwind-loader/build.min.js
+
+### Step 4: Leveraging files as Client Extension
+
+Once TailwindCSS / Flowbite files are deployed to Liferay - you can use them as Client Extensions: [CSS Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-css-client-extension) / [JavaScript Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-javascript-client-extension) for `build.min.css` / `build.min.js` files accordingly.
 
 ### Style Book
 

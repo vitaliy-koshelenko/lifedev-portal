@@ -1,0 +1,4 @@
+Bundle-Name: LifeDev Tailwind Loader
+Bundle-SymbolicName: com.lifedev.tailwind.loader
+Bundle-Version: 1.0.0
+Web-ContextPath: /lifedev-tailwind-loader
