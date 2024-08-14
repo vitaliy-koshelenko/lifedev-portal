@@ -227,9 +227,61 @@ Make sure you can access the files withing the deployed module:
 - http://localhost:8080/o/lifedev-tailwind-loader/build.min.css
 - http://localhost:8080/o/lifedev-tailwind-loader/build.min.js
 
-### Step 4: Leveraging files as Client Extension
+_Note: you can also adjust the Gradle build script to install node modules and run the Gulp buid files automatically on deployment._
+
+### Step 4: Client Extensions
 
 Once TailwindCSS / Flowbite files are deployed to Liferay - you can use them as Client Extensions: [CSS Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-css-client-extension) / [JavaScript Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-javascript-client-extension) for `build.min.css` / `build.min.js` files accordingly.
+
+Navigate to `Client Extensions` menu:
+
+![02-client-extensions.png](images/tailwind-flowbite/02-client-extensions.png)
+
+Add a new CSS Client Extension:
+
+![03-css-extension.png](images/tailwind-flowbite/03-css-extension.png)
+
+and specify the URL to `build.min.css`:
+
+![04-css-extension-config.png](images/tailwind-flowbite/04-css-extension-config.png)
+
+Add a new JavaScript Client Extension:
+
+![05-js-extension.png](images/tailwind-flowbite/05-js-extension.png)
+
+and specify the URL to `build.min.js`:
+
+![06-js-extension-config.png](images/tailwind-flowbite/06-js-extension-config.png)
+
+Select created CSS/JavaScript for the Master Page in the Page Design Options:
+
+![07-master-config.png](images/tailwind-flowbite/07-master-config.png)
+
+Add CSS Client Extension:
+
+![08-master-css-01.png](images/tailwind-flowbite/08-master-css-01.png)
+
+and select the created "Tailwind CSS" one:
+
+![09-master-css-02.png](images/tailwind-flowbite/09-master-css-02.png)
+
+Add JavaScript Client Extension:
+
+![10-master-js-01.png](images/tailwind-flowbite/10-master-js-01.png)
+
+and select the created "Tailwind JS" one:
+
+![11-master-js-02.png](images/tailwind-flowbite/11-master-js-02.png)
+
+Publish the Master Template to apply the configuration, and create a new Page based on it - to check Tailwind integration.
+
+Add the HTML component and copy markup from the Flowbite Components (e.g. [Buttons](https://flowbite.com/docs/components/buttons/)).
+
+Make sure, everything is displayed and working as expected:
+
+![12-using-tailwind.png](images/tailwind-flowbite/12-using-tailwind.png)
+
+With that, basic integration is completed, and you can start components development based on Flowbite library and Tailwind CSS.
 
 ### Style Book
 
