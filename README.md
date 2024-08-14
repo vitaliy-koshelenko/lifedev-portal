@@ -328,7 +328,16 @@ For any other conflicting cases you can apply custom prefixes in the same way.
 
 ### Extra Step 2: Style Book
 
-[StyleBooks](https://learn.liferay.com/w/dxp/site-building/site-appearance/style-books) in Liferay provide an option to customize portal appearance on-the-fly bt providing values for special units (tokens).
+[StyleBooks](https://learn.liferay.com/w/dxp/site-building/site-appearance/style-books) in Liferay provide an option to customize portal appearance on-the-fly by providing values for special units (tokens).
+
+In scope of integration with TailwindCSS it would be nice to have a possibility to edit values for Tailwind CSS (e.g. values for specific padding/margin classes).
+
+For this you'll need custom token definitions. Thus, you can create a [Theme CSS Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-theme-css-client-extension) to define a custom `frontend-token-definition.json` file with tokens.
+
+
+
+
+
 
 
 

@@ -1,0 +1,431 @@
+{
+	"frontendTokenCategories": [
+		{
+			"frontendTokenSets": [
+				{
+					"frontendTokens": [
+						{
+							"defaultValue": "#f1f5fa",
+							"editorType": "ColorPicker",
+							"label": "Blue 50",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-50"
+								}
+							],
+							"name": "blue-50",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#d6dfeb",
+							"editorType": "ColorPicker",
+							"label": "Blue 100",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-100"
+								}
+							],
+							"name": "blue-100",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#a3b2c7",
+							"editorType": "ColorPicker",
+							"label": "Blue 200",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-200"
+								}
+							],
+							"name": "blue-200",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#6b7f9a",
+							"editorType": "ColorPicker",
+							"label": "Blue 300",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-300"
+								}
+							],
+							"name": "blue-300",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#4d678d",
+							"editorType": "ColorPicker",
+							"label": "Blue 400",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-400"
+								}
+							],
+							"name": "blue-400",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#294469",
+							"editorType": "ColorPicker",
+							"label": "Blue 500",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-500"
+								}
+							],
+							"name": "blue-500",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#173552",
+							"editorType": "ColorPicker",
+							"label": "Blue 600",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-600"
+								}
+							],
+							"name": "blue-600",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#0d263f",
+							"editorType": "ColorPicker",
+							"label": "Blue 700",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-700"
+								}
+							],
+							"name": "blue-700",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#05152d",
+							"editorType": "ColorPicker",
+							"label": "Blue 800",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-800"
+								}
+							],
+							"name": "blue-800",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#020d1f",
+							"editorType": "ColorPicker",
+							"label": "Blue 900",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "blue-900"
+								}
+							],
+							"name": "blue-900",
+							"type": "String"
+						}
+					],
+					"label": "Blues",
+					"name": "blues"
+				},
+				{
+					"frontendTokens": [
+						{
+							"defaultValue": "#f3faf4",
+							"editorType": "ColorPicker",
+							"label": "Green 50",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-50"
+								}
+							],
+							"name": "green-50",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#e4f4e7",
+							"editorType": "ColorPicker",
+							"label": "Green 100",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-100"
+								}
+							],
+							"name": "green-100",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#cae8cf",
+							"editorType": "ColorPicker",
+							"label": "Green 200",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-200"
+								}
+							],
+							"name": "green-200",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#a0d5ab",
+							"editorType": "ColorPicker",
+							"label": "Green 300",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-300"
+								}
+							],
+							"name": "green-300",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#6fb97f",
+							"editorType": "ColorPicker",
+							"label": "Green 400",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-400"
+								}
+							],
+							"name": "green-400",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#4a9d5c",
+							"editorType": "ColorPicker",
+							"label": "Green 500",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-500"
+								}
+							],
+							"name": "green-500",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#3f8e50",
+							"editorType": "ColorPicker",
+							"label": "Green 600",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-600"
+								}
+							],
+							"name": "green-600",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#2f663c",
+							"editorType": "ColorPicker",
+							"label": "Green 700",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-700"
+								}
+							],
+							"name": "green-700",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#2a5133",
+							"editorType": "ColorPicker",
+							"label": "Green 800",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-800"
+								}
+							],
+							"name": "green-800",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#24432b",
+							"editorType": "ColorPicker",
+							"label": "Green 900",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-900"
+								}
+							],
+							"name": "green-900",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#0f2415",
+							"editorType": "ColorPicker",
+							"label": "Green 950",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "green-950"
+								}
+							],
+							"name": "green-950",
+							"type": "String"
+						}
+					],
+					"label": "Greens",
+					"name": "greens"
+				},
+				{
+					"frontendTokens": [
+						{
+							"defaultValue": "#fde4e3",
+							"editorType": "ColorPicker",
+							"label": "Red 100",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-100"
+								}
+							],
+							"name": "red-100",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#fdcdcb",
+							"editorType": "ColorPicker",
+							"label": "Red 200",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-200"
+								}
+							],
+							"name": "red-200",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#faaaa7",
+							"editorType": "ColorPicker",
+							"label": "Red 300",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-300"
+								}
+							],
+							"name": "red-300",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#f47a75",
+							"editorType": "ColorPicker",
+							"label": "Red 400",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-400"
+								}
+							],
+							"name": "red-400",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#ea4f49",
+							"editorType": "ColorPicker",
+							"label": "Red 500",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-500"
+								}
+							],
+							"name": "red-500",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#d83731",
+							"editorType": "ColorPicker",
+							"label": "Red 600",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-600"
+								}
+							],
+							"name": "red-600",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#b52520",
+							"editorType": "ColorPicker",
+							"label": "Red 700",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-700"
+								}
+							],
+							"name": "red-700",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#95231f",
+							"editorType": "ColorPicker",
+							"label": "Red 800",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-800"
+								}
+							],
+							"name": "red-800",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#7c2320",
+							"editorType": "ColorPicker",
+							"label": "Red 900",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-900"
+								}
+							],
+							"name": "red-900",
+							"type": "String"
+						},
+						{
+							"defaultValue": "#430e0c",
+							"editorType": "ColorPicker",
+							"label": "Red 950",
+							"mappings": [
+								{
+									"type": "cssVariable",
+									"value": "red-950"
+								}
+							],
+							"name": "red-950",
+							"type": "String"
+						}
+					],
+					"label": "Reds",
+					"name": "reds"
+				}
+			],
+			"label": "color-system",
+			"name": "colorSystem"
+		}
+	]
+}

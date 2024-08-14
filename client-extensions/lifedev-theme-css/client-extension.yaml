@@ -1,0 +1,9 @@
+assemble:
+    - from: build/buildTheme/img
+      into: static/img
+lifedev-theme-css:
+    clayURL: css/clay.css
+    frontendTokenDefinitionJSON: src/frontend-token-definition.json
+    mainURL: css/main.css
+    name: LifeDev Theme CSS
+    type: themeCSS
