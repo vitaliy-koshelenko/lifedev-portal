@@ -12,7 +12,7 @@ This articles shows how to incorporate TailwindCSS / Flowbite to Liferay 7.4.
 
 ## TailwindCSS & Flowbite Integration
 
-### Step1: Standalone Configuration
+### Step 1: Standalone Configuration
 
 Before integrating to Liferay you can install & configure TailwindCSS and Flowbite separately.
 
@@ -283,8 +283,53 @@ Make sure, everything is displayed and working as expected:
 
 With that, basic integration is completed, and you can start components development based on Flowbite library and Tailwind CSS.
 
-### Style Book
+When any changes to Tailwind configuration or build process are needed - you can just redeploy the OSGi module: no changes for Client Extension or created fragments are not needed.
+
+### Extra Step 1: Custom Prefixes
+
+If you take a closer look, and compare results with the original Flowbite components - you may see slight differences in displaying the elements.
+For example, buttons in Liferay have bigger padding that original Flowbite elements.
+This happens, because Tailwind CSS class name conflict with Liferay's Clay/Bootstrap ones, and the last one takes the precedence (because it's `!important;` :) ):
+
+![13-ui-differences.png](images/tailwind-flowbite/13-ui-differences.png)
+
+As you can see - Clay styles override the styles from Tailwind CSS: 
+
+![14-css-class-conflict.png](images/tailwind-flowbite/14-css-class-conflict.png)
+
+To avoid this - you can define custom prefixes in Tailwind configuration, and also classes for which custom prefix needs to be added:
+
+```
+  prefix: 'ld-',
+  content: [],
+  safelist: [
+    {
+      pattern: /p[trblxy]?-\d+/,
+    },
+    {
+      pattern: /m[trblxy]?-\d+/,
+    }
+  ],
+```
+
+Here a custom `ld` prefix is defined for all CSS classes for paddings and margins.
+
+_Note: for more details see [Tailwind Prefix Configuration](https://tailwindcss.com/docs/configuration#prefix)_
+
+Rebuild CSS/JS files using the new configuration, and redeploy the OSGi module.
+
+Adjust the component accordingly, to use custom prefixes for paddings and margins, e.g.: `<button type="button" class="ld-py-2.5 ld-px-5 ...`
+
+There should be no conflicts anymore:
+
+![15-css-no-conflict.png](images/tailwind-flowbite/15-css-no-conflict.png)
+
+For any other conflicting cases you can apply custom prefixes in the same way.
+
+### Extra Step 2: Style Book
+
+[StyleBooks](https://learn.liferay.com/w/dxp/site-building/site-appearance/style-books) in Liferay provide an option to customize portal appearance on-the-fly bt providing values for special units (tokens).
+
+
 
 ## Conclusion
-
-Enjoy
