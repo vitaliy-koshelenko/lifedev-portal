@@ -330,15 +330,51 @@ For any other conflicting cases you can apply custom prefixes in the same way.
 
 [StyleBooks](https://learn.liferay.com/w/dxp/site-building/site-appearance/style-books) in Liferay provide an option to customize portal appearance on-the-fly by providing values for special units (tokens).
 
-In scope of integration with TailwindCSS it would be nice to have a possibility to edit values for Tailwind CSS (e.g. values for specific padding/margin classes).
+In scope of integration with TailwindCSS it would be nice to have a possibility to edit values for Tailwind CSS (e.g. values for colors, specific padding/margin classes).
 
-For this you'll need custom token definitions. Thus, you can create a [Theme CSS Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-theme-css-client-extension) to define a custom `frontend-token-definition.json` file with tokens.
+For this you need to define custom token definitions. Thus, you can create a [Theme CSS Client Extension](https://learn.liferay.com/w/dxp/liferay-development/customizing-liferays-look-and-feel/using-a-theme-css-client-extension) to define a custom `frontend-token-definition.json` file with tokens.
 
+Create a folder inside `client-extensions` (e.g. `lifedev-theme-css`):
 
+![16-theme-css-client-extension.png](images/tailwind-flowbite/16-theme-css-client-extension.png)
 
+Define `client-extension.yaml` file, sample:
 
+```
+assemble:
+    - from: build/buildTheme/img
+      into: static/img
+lifedev-theme-css:
+    clayURL: css/clay.css
+    frontendTokenDefinitionJSON: src/frontend-token-definition.json
+    mainURL: css/main.css
+    name: LifeDev Theme CSS
+    type: themeCSS
+```
 
+In the `frontend-token-definition.json` define the required tokens:
 
+![20-stylebook-tokens.png](images/tailwind-flowbite/20-stylebook-tokens.png)
+
+_Note: here tokens are defined for some of the colors of Tailwind Color Palette._ 
+
+Deploy the Client Extension and apply it to Public Pages:
+
+![17-public-page-config.png](images/tailwind-flowbite/17-public-page-config.png)
+
+Add Theme CSS client extension:
+
+![18-add-theme-css.png](images/tailwind-flowbite/18-add-theme-css.png)
+
+and select the deployed extension from the list:
+
+![19-select-theme-css.png](images/tailwind-flowbite/19-select-theme-css.png)
+
+Create a new StyleBook, make sure tokens from StyleBook are displayed.
+
+To make StyleBook values used by Tailwind - you need to assign the appropriate CSS variables names in `tailwind.config.js`.
+
+See sample configuration.
 
 
 ## Conclusion
