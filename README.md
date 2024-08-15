@@ -384,4 +384,8 @@ To use created StyleBook you also need to extend [Default Theme Configuration](h
 
 ![22-tailwind-config.png](images/tailwind-flowbite/22-tailwind-config.png)
 
-For example, class 
+In example above classes for `red-700` (e.g. `ld-text-red-700`, `ld-bg-red-700`) use `red-700` CSS Variable, which is also used by StyleBook.
+
+With that, you can use defined StyleBook to update configuration of TailwindCSS classes, and change the user interface dynamically:
+
+![23-stylebook-sample.png](images/tailwind-flowbite/23-stylebook-sample.png)
