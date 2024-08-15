@@ -328,6 +328,8 @@ For any other conflicting cases you can apply custom prefixes in the same way.
 
 ### Extra Step 2: Style Book
 
+**Custom StyleBook**
+
 [StyleBooks](https://learn.liferay.com/w/dxp/site-building/site-appearance/style-books) in Liferay provide an option to customize portal appearance on-the-fly by providing values for special units (tokens).
 
 In scope of integration with TailwindCSS it would be nice to have a possibility to edit values for Tailwind CSS (e.g. values for colors, specific padding/margin classes).
@@ -370,11 +372,16 @@ and select the deployed extension from the list:
 
 ![19-select-theme-css.png](images/tailwind-flowbite/19-select-theme-css.png)
 
-Create a new StyleBook, make sure tokens from StyleBook are displayed.
+Create a new StyleBook, make sure custom tokens are displayed:
+
+![21-stylebook.png](images/tailwind-flowbite/21-stylebook.png)
 
 To make StyleBook values used by Tailwind - you need to assign the appropriate CSS variables names in `tailwind.config.js`.
 
-See sample configuration.
+**Tailwind Configuration**
 
+To use created StyleBook you also need to extend [Default Theme Configuration](https://tailwindcss.com/docs/theme#customizing-the-default-theme) in `tailwind.config.js` and make Tailwind classes (generated based on configuration) use specified CSS variables (from StyleBook tokens), sample:  
 
-## Conclusion
+![22-tailwind-config.png](images/tailwind-flowbite/22-tailwind-config.png)
+
+For example, class 

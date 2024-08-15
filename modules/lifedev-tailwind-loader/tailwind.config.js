@@ -17,10 +17,10 @@ module.exports = {
       pattern: /m[trblxy]?-\d+/,
     },
     {
-      pattern: /text-[a-z]+-\d{1,3}/, // Text color classes like text-red-500
+      pattern: /text-[a-z]+-\d{1,3}/,
     },
     {
-      pattern: /bg-[a-z]+-\d{1,3}/,  // Background color classes like bg-red-500
+      pattern: /bg-[a-z]+-\d{1,3}/,
     }
   ],
   theme: {
